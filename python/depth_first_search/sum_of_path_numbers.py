@@ -13,6 +13,7 @@ def _find_sum_of_path_numbers(root, current_path):
         return s
     return _find_sum_of_path_numbers(root.left, s) + _find_sum_of_path_numbers(root.right, s)
 
+
 def find_sum_of_path_numbers(root):
     return _find_sum_of_path_numbers(root, 0)
 

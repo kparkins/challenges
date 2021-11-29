@@ -1,22 +1,9 @@
 import math
 from collections import Counter
 
+
 def triplet_sum_to_zero(numbers):
-    results = set()
-    targets = Counter(numbers)
-    for i in range(len(numbers)-1):
-        for j in range(i+1, len(numbers)):
-            diff = -(numbers[i] + numbers[j])
-            if diff not in targets:
-                continue
-            count = targets[diff] 
-            if numbers[i] == diff:
-                count -= 1 
-            if numbers[j] == diff:
-                count -= 1
-            if count > 0:
-                results.add(tuple(sorted([numbers[i], numbers[j], diff])))
-    return [list(x) for x in results]
+    pass
 
 
 def triplet_sum_to_zero_two_pointers(numbers):
