@@ -88,6 +88,35 @@ def fast_pow(x, y):
     return result
 
 
+def reverse_digits(num):
+    rem = abs(num)
+    result = 0
+    while rem:
+        result = result * 10 + rem % 10
+        rem //= 10
+    return -result if num < 0 else result
+
+
+def reverse_bits(bits):
+    result = 0
+    for i in range(0, 64):
+        result |= ((bits >> 63 - i) & 1) << i
+    return result
+
+
+def test_reverse_bits():
+    assert 0b01 == reverse_bits(1 << 63)
+    assert 0b10 == reverse_bits(0b1 << 62)
+    assert 0b101 == reverse_bits(0b101 << 61)
+
+
+def test_reverse_digits():
+    assert 42 == reverse_digits(24)
+    assert 4321 == reverse_digits(1234)
+    assert 1234567 == reverse_digits(7654321)
+    assert -1234567 == reverse_digits(-7654321)
+
+
 def test_fast_pow():
     assert 2**1 == fast_pow(2, 1)
     assert 2**2 == fast_pow(2, 2)
