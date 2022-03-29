@@ -1,11 +1,11 @@
 
 def dutch_flag_sort(numbers):
     cursor = 0
-    low, high = 0, len(numbers) - 1
+    low, high = 0, len(numbers)
     while cursor <= high:
         if numbers[cursor] == 2:
-            numbers[cursor], numbers[high] = numbers[high], numbers[cursor]
             high -= 1
+            numbers[cursor], numbers[high] = numbers[high], numbers[cursor]
         elif numbers[cursor] == 0:
             numbers[cursor], numbers[low] = numbers[low], numbers[cursor]
             low += 1
