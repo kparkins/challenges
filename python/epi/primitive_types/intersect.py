@@ -1,6 +1,6 @@
 from collections import namedtuple
 
-Rectangle = namedtuple('Rectangle', ('x', 'x', 'width', 'height'))
+Rectangle = namedtuple('Rectangle', ('x', 'y', 'width', 'height'))
 
 
 def intersect_rectangle(a, b):
