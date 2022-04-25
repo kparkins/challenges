@@ -60,6 +60,21 @@ def evaluate_rpn(expression):
     return stack[0]
 
 
+def valid_parenthesis(string):
+    mapping = {
+        '(': ')',
+        '[': ']',
+        '{': '}',
+    }
+    stack = []
+    for c in string:
+        if c in mapping:
+            stack.append(c)
+        elif len(stack) == 0 or not mapping[stack.pop()] == c:
+            return False
+    return len(stack) == 0
+
+
 def test_max_stack():
     m = MaxStack()
 
@@ -94,3 +109,15 @@ def test_evaluate_rpn():
     assert 2 == evaluate_rpn('6,3,/')
     assert -2 == evaluate_rpn('-6,3,/')
     assert 15 == evaluate_rpn('3,4,+,2,*,1,+')
+
+
+def test_valid_parenthesis():
+
+    assert True == valid_parenthesis('()')
+    assert False == valid_parenthesis('(')
+    assert True == valid_parenthesis('{()()}')
+    assert False == valid_parenthesis('{()()})')
+    assert False == valid_parenthesis('{()(})')
+    assert False == valid_parenthesis('[{]()()}')
+    assert True == valid_parenthesis('[{{}()[]([])}]')
+    assert False == valid_parenthesis('[[[[[]]]')

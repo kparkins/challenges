@@ -1,7 +1,4 @@
 
-from re import A
-
-
 class CircularQueue:
 
     def __init__(self, capacity):
