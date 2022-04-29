@@ -1,5 +1,5 @@
 
-def _solve_knapsack_memo(memo, profits, weights, capacity, index):
+'''def _solve_knapsack_memo(memo, profits, weights, capacity, index):
     if capacity <= 0 or index >= len(weights):
         return 0
     if memo[index][capacity] != -1:
@@ -44,7 +44,37 @@ def solve_knapsack_dp(profits, weights, capacity):
             if weights[i] <= c:
                 profit2 = profits[i] + dp[i - 1][c - weights[i]]
             dp[i][c] = max(profit1, profit2)
-    return dp[n - 1][capacity]
+    return dp[n - 1][capacity]'''
+
+
+def _solve_knapsack(profits, weights, capacity, index):
+    if index >= len(weights):
+        return 0
+
+    excluded = _solve_knapsack(profits, weights, capacity, index + 1)
+    included = 0
+    if capacity - weights[index] >= 0:
+        included = profits[index] + _solve_knapsack(
+            profits, weights, capacity - weights[index], index + 1)
+    return max(included, excluded)
+
+
+def solve_knapsack(profits, weights, capacity):
+    return _solve_knapsack(profits, weights, capacity, 0)
+
+
+def solve_knapsack_dp(profits, weights, capacity):
+    dp = [[0 for _ in range(capacity + 1)] for _ in range(len(weights) + 1)]
+
+    for i in range(1, len(dp)):
+        for j in range(1, len(dp[0])):
+            if j - weights[i - 1] < 0:
+                dp[i][j] = dp[i - 1][j]
+            else:
+                included = profits[i - 1] + dp[i - 1][j - weights[i - 1]]
+                excluded = dp[i - 1][j]
+                dp[i][j] = max(included, excluded)
+    return dp[len(weights)][capacity]
 
 
 def main():
