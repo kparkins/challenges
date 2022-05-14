@@ -1,8 +1,5 @@
 
 
-from multiprocessing.sharedctypes import Value
-
-
 class MaxStack:
 
     def __init__(self):

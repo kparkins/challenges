@@ -25,3 +25,4 @@ def test_merge_sorted_arrays():
         [6]
     ]
     assert [0, 1, 2, 3, 4, 5, 6, 7] == merge_sorted_arrays(arrays)
+
